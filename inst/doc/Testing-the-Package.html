@@ -275,10 +275,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">nthread =</span> <span class="dv">1</span>,</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_method =</span> <span class="st">&quot;absolute&quot;</span>,</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_trs =</span> <span class="fl">0.1</span>,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">max_attempt =</span> <span class="dv">1</span>,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">matching_fun =</span> <span class="st">&quot;matching_l1&quot;</span>,</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">delta_n =</span> <span class="dv">1</span>,</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">scale =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_trs_type=</span> <span class="st">&quot;mean&quot;</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">max_attempt =</span> <span class="dv">1</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">matching_fun =</span> <span class="st">&quot;matching_l1&quot;</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">delta_n =</span> <span class="dv">1</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">scale =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p>The second causal inference approach is <code>weighting</code>. Here is an example to generate pseudo population using <code>weighting</code> approach.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">generate_syn_data</span>(<span class="at">sample_size =</span> <span class="dv">10000</span>) </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -307,8 +308,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">nthread =</span> <span class="dv">1</span>,</span>
 <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_method =</span> <span class="st">&quot;absolute&quot;</span>,</span>
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_trs =</span> <span class="fl">0.1</span>,</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">max_attempt =</span> <span class="dv">1</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>                                  )</span></code></pre></div>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_trs_type =</span> <span class="st">&quot;mean&quot;</span>,</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">max_attempt =</span> <span class="dv">1</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>                                  )</span></code></pre></div>
 </div>
 <div id="further-processing" class="section level3">
 <h3>Further Processing</h3>
@@ -326,15 +328,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">nthread =</span> <span class="dv">1</span>,</span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_method =</span> <span class="st">&quot;absolute&quot;</span>,</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_trs =</span> <span class="fl">0.1</span>,</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">max_attempt =</span> <span class="dv">1</span>,</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">matching_fun =</span> <span class="st">&quot;matching_l1&quot;</span>,</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">delta_n =</span> <span class="dv">1</span>,</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">scale =</span> <span class="fl">0.5</span>)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>erf_val <span class="ot">&lt;-</span> <span class="fu">estimate_npmetric_erf</span>(pseudo_pop<span class="sc">$</span>pseudo_pop<span class="sc">$</span>Y,</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>                                 pseudo_pop<span class="sc">$</span>pseudo_pop<span class="sc">$</span>w,</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">bw_seq=</span><span class="fu">seq</span>(<span class="fl">0.2</span>,<span class="dv">2</span>,<span class="fl">0.2</span>),</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">w_vals =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">20</span>,<span class="fl">0.5</span>))</span></code></pre></div>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_trs_type=</span> <span class="st">&quot;mean&quot;</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">max_attempt =</span> <span class="dv">1</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">matching_fun =</span> <span class="st">&quot;matching_l1&quot;</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">delta_n =</span> <span class="dv">1</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">scale =</span> <span class="fl">0.5</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>erf_val <span class="ot">&lt;-</span> <span class="fu">estimate_npmetric_erf</span>(pseudo_pop<span class="sc">$</span>pseudo_pop<span class="sc">$</span>Y,</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                                 pseudo_pop<span class="sc">$</span>pseudo_pop<span class="sc">$</span>w,</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">bw_seq=</span><span class="fu">seq</span>(<span class="fl">0.2</span>,<span class="dv">2</span>,<span class="fl">0.2</span>),</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">w_vals =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">20</span>,<span class="fl">0.5</span>))</span></code></pre></div>
 </div>
 </div>
 <div id="steps-for-using-precomputed-data-during-the-test" class="section level2">

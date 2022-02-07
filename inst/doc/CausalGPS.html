@@ -162,7 +162,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <strong><code>ci_appr</code></strong> causal inference approach<br />
 <strong><code>covar_bl_method</code></strong> specified covariate balance method<br />
 <strong><code>covar_bl_trs</code></strong> specified covariate balance threshold<br />
-<strong><code>max_attempt</code></strong> maximum number of attempt to satisfy covariate balance</p>
+<strong><code>covar_bl_trs_type</code></strong> specified covariate balance threshold type <strong><code>max_attempt</code></strong> maximum number of attempt to satisfy covariate balance</p>
 <ul>
 <li>Generating Pseudo Population</li>
 </ul>
@@ -188,13 +188,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                             <span class="at">sl_lib =</span> <span class="fu">c</span>(<span class="st">&quot;m_xgboost&quot;</span>),</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                             <span class="at">covar_bl_method =</span> <span class="st">&quot;absolute&quot;</span>,</span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                             <span class="at">covar_bl_trs =</span> <span class="fl">0.1</span>,</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                             <span class="at">max_attempt =</span> <span class="dv">4</span>,</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                             <span class="at">matching_fun =</span> <span class="st">&quot;matching_l1&quot;</span>,</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                             <span class="at">delta_n =</span> <span class="dv">1</span>,</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                             <span class="at">scale =</span> <span class="fl">0.5</span>,</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                             <span class="at">nthread =</span> <span class="dv">1</span>)                            </span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                             </span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a> <span class="fu">plot</span>(pseudo_pop)</span></code></pre></div>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                             <span class="at">covar_bl_trs_type =</span> <span class="st">&quot;mean&quot;</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                             <span class="at">max_attempt =</span> <span class="dv">4</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                             <span class="at">matching_fun =</span> <span class="st">&quot;matching_l1&quot;</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                             <span class="at">delta_n =</span> <span class="dv">1</span>,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                             <span class="at">scale =</span> <span class="fl">0.5</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                             <span class="at">nthread =</span> <span class="dv">1</span>)                            </span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>                             </span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a> <span class="fu">plot</span>(pseudo_pop)</span></code></pre></div>
 <p><strong><code>matching_l1</code></strong> is Manhattan distance matching approach. For prediciton model we use <a href="https://github.com/ecpolley/SuperLearner">SuperLearner</a> package. User need to pass <strong><code>sl</code></strong> as <strong><code>pred_model</code></strong> to use SuperLearner package. SuperLearner supports different machine learning methods and packages. <strong><code>params</code></strong> is a list of hyperparameters that users can pass to the third party libraries in the SuperLearner package. All hyperparameters go into the params list. The prefixes are used to distinguished parameters for different libraries. The following table shows the external package names, their equivalent name that should be used in <strong><code>sl_lib</code></strong>, the prefixes that should be used for their hyperparameters in the <strong><code>params</code></strong> list, and available hyperparameters.</p>
 <table>
 <thead>
