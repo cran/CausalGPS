@@ -2,7 +2,7 @@ Package: CausalGPS
 Type: Package
 Title: Matching on Generalized Propensity Scores with Continuous
         Exposures
-Version: 0.2.7
+Version: 0.2.8
 Authors@R: c(
     person("Naeem", "Khoshnevis", email = "nkhoshnevis@g.harvard.edu",
            role=c("aut","cre"), 
@@ -29,16 +29,16 @@ Imports: parallel, data.table, SuperLearner, xgboost, earth, ranger,
         gam, KernSmooth, MASS, polycor, wCorr, stats, ggplot2, rlang,
         logger, Rcpp, gnm, tidyr
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Suggests: covr, knitr, rmarkdown, testthat
 VignetteBuilder: knitr
 Depends: R (>= 3.5.0)
 LinkingTo: Rcpp
 NeedsCompilation: yes
-Packaged: 2022-02-07 12:36:00 UTC; nak443
+Packaged: 2022-06-22 22:01:05 UTC; nak443
 Author: Naeem Khoshnevis [aut, cre] (<https://orcid.org/0000-0003-4315-1426>,
     FASRC),
   Xiao Wu [aut] (<https://orcid.org/0000-0002-4884-657X>, HSPH),
   Danielle Braun [aut] (<https://orcid.org/0000-0002-5177-8598>, HSPH)
 Repository: CRAN
-Date/Publication: 2022-02-07 13:00:06 UTC
+Date/Publication: 2022-06-22 22:20:09 UTC
