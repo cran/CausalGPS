@@ -56,7 +56,6 @@ pseudo_pop_1 <- generate_pseudo_pop(trimmed_data$cms_mortality_pct,
                                     data.frame(trimmed_data[, confounders_s1,
                                                             drop=FALSE]),
                                     ci_appr = "matching",
-                                    pred_model = "sl",
                                     gps_model = "parametric",
                                     bin_seq = NULL,
                                     trim_quantiles = c(0.0 ,
@@ -109,8 +108,8 @@ plot(pseudo_pop_2)
 
 
 ## -----------------------------------------------------------------------------
-optimized_data_1 <- pseudo_pop_1$pseudo_pop[,c("w","gps","counter")]
-nonoptimized_data_2 <- pseudo_pop_2$pseudo_pop[,c("w","gps","counter")]
+optimized_data_1 <- pseudo_pop_1$pseudo_pop[,c("w","gps","counter_weight")]
+nonoptimized_data_2 <- pseudo_pop_2$pseudo_pop[,c("w","gps","counter_weight")]
 
 
 print(paste("Number of rows of data in the optimized approach: ",
@@ -120,13 +119,13 @@ print(paste("Number of rows of data in the non-optimized approach: ",
             nrow(nonoptimized_data_2)))
 
 print(paste("Sum of data samples in the optimized approach: ",
-            sum(optimized_data_1$counter)))
+            sum(optimized_data_1$counter_weight)))
 print(paste("Number of data in the non-optimized approach: ",
             length(nonoptimized_data_2$w)))
 
 # Replicate gps values of optimized approach
 expanded_opt_data_1 <- optimized_data_1[rep(seq_len(nrow(optimized_data_1)),
-                                            optimized_data_1$counter), 1:3]
+                                            optimized_data_1$counter_weight), 1:3]
 
 exp_gps_a_1 <- expanded_opt_data_1$gps
 gps_b_1 <- nonoptimized_data_2$gps
