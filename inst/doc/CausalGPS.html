@@ -377,8 +377,6 @@ used, which is
 <strong><code>trim_quantiles</code></strong> A numerical vector of two.
 Represents the trim quantile level. Both numbers should be in the range
 of [0,1] and in increasing order (default: c(0.01,0.99)).<br />
-<strong><code>optimized_compile</code></strong> If TRUE, uses counts to
-keep track of number of replicated pseudo population.<br />
 <strong><code>params</code></strong> Includes list of params that is
 used internally. Unrelated parameters will be ignored.<br />
 <strong><code>sl_lib</code></strong>: A vector of prediction algorithms.
@@ -449,18 +447,17 @@ balance.</li>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                             <span class="at">use_cov_transform =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                             <span class="at">transformers =</span> <span class="fu">list</span>(<span class="st">&quot;pow2&quot;</span>, <span class="st">&quot;pow3&quot;</span>, <span class="st">&quot;abs&quot;</span>, <span class="st">&quot;scale&quot;</span>),</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                             <span class="at">trim_quantiles =</span> <span class="fu">c</span>(<span class="fl">0.01</span>,<span class="fl">0.99</span>),</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                             <span class="at">optimized_compile =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                             <span class="at">sl_lib =</span> <span class="fu">c</span>(<span class="st">&quot;m_xgboost&quot;</span>),</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                             <span class="at">covar_bl_method =</span> <span class="st">&quot;absolute&quot;</span>,</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                             <span class="at">covar_bl_trs =</span> <span class="fl">0.1</span>,</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                             <span class="at">covar_bl_trs_type =</span> <span class="st">&quot;mean&quot;</span>,</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                             <span class="at">max_attempt =</span> <span class="dv">4</span>,</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                             <span class="at">matching_fun =</span> <span class="st">&quot;matching_l1&quot;</span>,</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                             <span class="at">delta_n =</span> <span class="dv">1</span>,</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                             <span class="at">scale =</span> <span class="fl">0.5</span>,</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                             <span class="at">nthread =</span> <span class="dv">1</span>)                            </span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                             </span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a> <span class="fu">plot</span>(pseudo_pop)</span></code></pre></div>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                             <span class="at">sl_lib =</span> <span class="fu">c</span>(<span class="st">&quot;m_xgboost&quot;</span>),</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                             <span class="at">covar_bl_method =</span> <span class="st">&quot;absolute&quot;</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                             <span class="at">covar_bl_trs =</span> <span class="fl">0.1</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                             <span class="at">covar_bl_trs_type =</span> <span class="st">&quot;mean&quot;</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                             <span class="at">max_attempt =</span> <span class="dv">4</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                             <span class="at">matching_fun =</span> <span class="st">&quot;matching_l1&quot;</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                             <span class="at">delta_n =</span> <span class="dv">1</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                             <span class="at">scale =</span> <span class="fl">0.5</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                             <span class="at">nthread =</span> <span class="dv">1</span>)                            </span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                             </span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a> <span class="fu">plot</span>(pseudo_pop)</span></code></pre></div>
 <p><strong><code>matching_l1</code></strong> is Manhattan distance
 matching approach. For prediction model we use <a href="https://github.com/ecpolley/SuperLearner/">SuperLearner</a>
 package. SuperLearner supports different machine learning methods and
