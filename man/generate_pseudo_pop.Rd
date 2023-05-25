@@ -9,23 +9,31 @@ generate_pseudo_pop(
   w,
   c,
   ci_appr,
-  gps_model = "parametric",
+  gps_density = "normal",
   use_cov_transform = FALSE,
   transformers = list("pow2", "pow3"),
   bin_seq = NULL,
-  trim_quantiles = c(0.01, 0.99),
+  exposure_trim_qtls = c(0.01, 0.99),
+  gps_trim_qtls = c(0, 1),
   params = list(),
   sl_lib = c("m_xgboost"),
   nthread = 1,
+  include_original_data = FALSE,
+  gps_obj = NULL,
   ...
 )
 }
 \arguments{
-\item{Y}{A vector of observed outcome variable.}
+\item{Y}{A data.frame comprised of two columns: one contains the observed
+outcome variable, and the other is labeled as 'id'. The column for the
+outcome variable can be assigned any name as per your requirements.}
 
-\item{w}{A vector of observed continuous exposure variable.}
+\item{w}{A data.frame comprised of two columns: one contains the observed
+exposure variable, and the other is labeled as 'id'. The column for the
+outcome variable can be assigned any name as per your requirements.}
 
-\item{c}{A data.frame of observed covariates variable.}
+\item{c}{A data.frame of includes observed covariate variables. It should
+also consist of a column named 'id'.}
 
 \item{ci_appr}{The causal inference approach. Possible values are:
 \itemize{
@@ -33,8 +41,8 @@ generate_pseudo_pop(
 \item "weighting": Weighting by GPS
 }}
 
-\item{gps_model}{Model type which is used for estimating GPS value, including
-parametric (default) and non-parametric.}
+\item{gps_density}{Model type which is used for estimating GPS value,
+including \code{normal} (default) and \code{kernel}.}
 
 \item{use_cov_transform}{If TRUE, the function uses transformer to meet the
 covariate balance.}
@@ -51,9 +59,13 @@ Available transformers:
 NULL is passed the default value will be used, which is
 \code{seq(min(w)+delta_n/2,max(w), by=delta_n)}.}
 
-\item{trim_quantiles}{A numerical vector of two. Represents the trim quantile
-level. Both numbers should be in the range of [0,1] and in increasing order
-(default: c(0.01,0.99)).}
+\item{exposure_trim_qtls}{A numerical vector of two. Represents the trim quantile
+level for exposure values. Both numbers should be in the range of [0,1] and
+in increasing order (default: c(0.01, 0.99)).}
+
+\item{gps_trim_qtls}{A numerical vector of two. Represents the trim quantile
+level for the gps values. Both numbers should be in the range of [0,1] and
+in increasing order (default: c(0.0, 1.0)).}
 
 \item{params}{Includes list of params that is used internally. Unrelated
 parameters will be ignored.}
@@ -62,6 +74,12 @@ parameters will be ignored.}
 
 \item{nthread}{An integer value that represents the number of threads to be
 used by internal packages.}
+
+\item{include_original_data}{If TRUE, includes the original data in the
+outcome.}
+
+\item{gps_obj}{A gps object that is generated with \code{estimate_gps} function.
+If it is provided, the number of iteration will forced to 1 (Default: NULL).}
 
 \item{...}{Additional arguments passed to different models.}
 }
@@ -95,9 +113,9 @@ first.
 \itemize{
 \item if ci.appr = 'matching':
 \itemize{
-\item \emph{matching_fun}: Matching function. Available options:
+\item \emph{dist_measure}: Matching function. Available options:
 \itemize{
-\item matching_l1: Manhattan distance matching
+\item l1: Manhattan distance matching
 }
 \item \emph{delta_n}: caliper parameter.
 \item \emph{scale}: a specified scale parameter to control the relative weight that
@@ -125,14 +143,14 @@ values.
 }
 \examples{
 m_d <- generate_syn_data(sample_size = 100)
-pseuoo_pop <- generate_pseudo_pop(m_d$Y,
-                                  m_d$treat,
-                                  m_d[c("cf1","cf2","cf3",
-                                        "cf4","cf5","cf6")],
+pseuoo_pop <- generate_pseudo_pop(m_d[, c("id", "Y")],
+                                  m_d[, c("id", "w")],
+                                  m_d[, c("id", "cf1","cf2","cf3","cf4","cf5","cf6")],
                                   ci_appr = "matching",
-                                  gps_model = "parametric",
+                                  gps_density = "normal",
                                   bin_seq = NULL,
-                                  trim_quantiles = c(0.01,0.99),
+                                  expos_trim_qlts = c(0.01,0.99),
+                                  gps_trim_qlts = c(0.01,0.99),
                                   use_cov_transform = FALSE,
                                   transformers = list(),
                                   params = list(xgb_nrounds=c(10,20,30),
@@ -143,7 +161,7 @@ pseuoo_pop <- generate_pseudo_pop(m_d$Y,
                                   covar_bl_trs = 0.1,
                                   covar_bl_trs_type= "mean",
                                   max_attempt = 1,
-                                  matching_fun = "matching_l1",
+                                  dist_measure = "l1",
                                   delta_n = 1,
                                   scale = 0.5)
 

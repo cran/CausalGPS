@@ -2,8 +2,7 @@ test_that("absoulte_weighted_corr_fun works as expected.", {
 
   # see test-check_covar_balance.R for more details about the test data.
 
-  #data1 <- data.table::setDF(pseudo_pop_weight_test)
-  data1 <- pseudo_pop_weight_test
+  data1 <- data.table::setDF(pseudo_pop_weight_test)
   val1 <- absolute_weighted_corr_fun(data1[,2],
             data1[,13],
             data1[,5:12]

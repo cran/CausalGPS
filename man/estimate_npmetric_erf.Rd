@@ -8,9 +8,10 @@ estimate_npmetric_erf(
   m_Y,
   m_w,
   counter_weight,
-  bw_seq = seq(0.2, 2, 0.2),
+  bw_seq,
   w_vals,
-  nthread
+  nthread,
+  kernel_appr = "locpol"
 )
 }
 \arguments{
@@ -21,12 +22,15 @@ estimate_npmetric_erf(
 \item{counter_weight}{A vector of counter or weight variable in the matched
 set.}
 
-\item{bw_seq}{A vector of bandwidth values (Default is seq(0.2,2,0.2)).}
+\item{bw_seq}{A vector of bandwidth values.}
 
 \item{w_vals}{A vector of values that you want to calculate the values of
 the ERF at.}
 
 \item{nthread}{The number of available cores.}
+
+\item{kernel_appr}{Internal kernel approach. Available options are \code{locpol}
+and \code{kernsmooth}.}
 }
 \value{
 The function returns a gpsm_erf object. The object includes the following
@@ -52,9 +56,9 @@ Estimate Functions Using Local Polynomial kernel regression.
 
 set.seed(697)
 m_d <- generate_syn_data(sample_size = 200)
-pseudo_pop <- generate_pseudo_pop(m_d$Y,
-                                  m_d$treat,
-                                  m_d[c("cf1","cf2","cf3",
+pseudo_pop <- generate_pseudo_pop(m_d[, c("id", "Y")],
+                                  m_d[, c("id", "w")],
+                                  m_d[, c("id", "cf1","cf2","cf3",
                                         "cf4","cf5","cf6")],
                                   ci_appr = "matching",
                                   pred_model = "sl",
@@ -66,7 +70,7 @@ pseudo_pop <- generate_pseudo_pop(m_d$Y,
                                   covar_bl_trs = 0.1,
                                   covar_bl_trs_type="mean",
                                   max_attempt = 1,
-                                  matching_fun = "matching_l1",
+                                  dist_measure = "l1",
                                   delta_n = 1,
                                   scale = 0.5)
 

@@ -2,19 +2,21 @@ test_that("estimate_npmetric_erf works as expected", {
 
   set.seed(347)
   m_d <- generate_syn_data(sample_size = 400)
+  m_d$id <- seq_along(1:nrow(m_d))
 
-  pseudo_pop <- generate_pseudo_pop(m_d$Y,
-                                    m_d$treat,
-                                    m_d[c("cf1","cf2","cf3","cf4","cf5","cf6")],
+  pseudo_pop <- generate_pseudo_pop(m_d[, c("id", "Y")],
+                                    m_d[, c("id", "w")],
+                                    m_d[, c("id", "cf1", "cf2", "cf3",
+                                            "cf4", "cf5", "cf6")],
                                     ci_appr = "matching",
-                                    gps_model = "non-parametric",
-                                    trim_quantiles = c(0.01,0.99),
+                                    gps_density = "kernel",
+                                    exposure_trim_qtls = c(0.01,0.99),
                                     sl_lib = c("SL.xgboost", "SL.gam"),
                                     covar_bl_method = "absolute",
                                     covar_bl_trs = 0.1,
                                     covar_bl_trs_type = "mean",
                                     max_attempt = 1,
-                                    matching_fun = "matching_l1",
+                                    dist_measure = "l1",
                                     delta_n = 1,
                                     scale = 0.5)
 
@@ -31,7 +33,7 @@ test_that("estimate_npmetric_erf works as expected", {
   expect_equal(class(res),"gpsm_erf")
   expect_equal(length(res$params$bw_seq), 10)
   expect_equal(length(res$params$w_vals), length(res$erf))
-  # expect_equal(res$risk_val[1], 1305125, tolerance = 0.00001)
+  #expect_equal(res$risk_val[1], 1305125, tolerance = 0.00001)
 })
 
 
@@ -41,20 +43,22 @@ test_that("estimate_npmetric_erf works as expected (with earth)", {
 
   set.seed(347)
   m_d <- generate_syn_data(sample_size = 400)
+  m_d$id <- seq_along(1:nrow(m_d))
 
-  pseudo_pop <- generate_pseudo_pop(m_d$Y,
-                                    m_d$treat,
-                                    m_d[c("cf1","cf2","cf3","cf4","cf5","cf6")],
+  pseudo_pop <- generate_pseudo_pop(m_d[, c("id", "Y")],
+                                    m_d[, c("id", "w")],
+                                    m_d[, c("id", "cf1", "cf2", "cf3", "cf4",
+                                            "cf5", "cf6")],
                                     ci_appr = "matching",
                                     pred_model = "sl",
-                                    gps_model = "non-parametric",
-                                    trim_quantiles = c(0.01,0.99),
+                                    gps_density = "kernel",
+                                    exposure_trim_qtls = c(0.01,0.99),
                                     sl_lib = c("SL.xgboost","SL.earth","SL.gam"),
                                     covar_bl_method = "absolute",
                                     covar_bl_trs = 0.1,
                                     covar_bl_trs_type = "mean",
                                     max_attempt = 1,
-                                    matching_fun = "matching_l1",
+                                    dist_measure = "l1",
                                     delta_n = 1,
                                     scale = 0.5)
 
@@ -71,6 +75,6 @@ test_that("estimate_npmetric_erf works as expected (with earth)", {
   expect_equal(class(res),"gpsm_erf")
   expect_equal(length(res$params$bw_seq), 10)
   expect_equal(length(res$params$w_vals), length(res$erf))
-  # expect_equal(res$risk_val[1], 1305125, tolerance = 0.00001)
+  #expect_equal(res$risk_val[1], 1305125, tolerance = 0.00001)
 
 })

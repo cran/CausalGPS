@@ -18,7 +18,7 @@
 #'
 check_args <- function(ci_appr,
                        use_cov_transform, transformers,
-                       gps_model, trim_quantiles,
+                       gps_density, trim_quantiles,
                        ...) {
 
   # 1) Check if the main arguments are correct.
@@ -49,7 +49,7 @@ check_args <- function(ci_appr,
                " and the first quantile should be less than the second one."))
   }
 
-  check_args_estimate_gps(gps_model, ...)
+  check_args_estimate_gps(gps_density, ...)
   check_args_generate_pseudo_pop(max_attempt = max_attempt)
   check_args_compile_pseudo_pop(ci_appr, ...)
   check_args_use_cov_transformers(use_cov_transform, transformers)
@@ -65,8 +65,8 @@ check_args <- function(ci_appr,
 #' Checks estimate_gps function arguments to make sure that the required
 #' additional arguments are provided.
 #'
-#' @param gps_model Model type which is used for estimating GPS value, including
-#' `parametric` and `non-parametric`.
+#' @param gps_density Model type which is used for estimating GPS value, including
+#' `normal` and `kernel`.
 #' @param ... Additional arguments to successfully run the process.
 #'
 #' @return
@@ -74,7 +74,7 @@ check_args <- function(ci_appr,
 #'
 #' @keywords internal
 #'
-check_args_estimate_gps <- function(gps_model, ...){
+check_args_estimate_gps <- function(gps_density, ...){
 
   required_args <- NULL
 
@@ -83,9 +83,9 @@ check_args_estimate_gps <- function(gps_model, ...){
   #   stop(paste(pred_model, " is not a valid prediction model."))
   # }
 
-  if (!is.element(gps_model, c('parametric','non-parametric'))){
-    stop(paste(gps_model, " is not a valide gps_model.",
-               "Valid options: parametric, non-parametric."))
+  if (!is.element(gps_density, c('normal','kernel'))){
+    stop(paste(gps_density, " is not a valide gps_density.",
+               "Valid options: normal, kernel."))
   }
 
   # checkpoint 2 ------------------------------------------
@@ -140,14 +140,14 @@ check_args_compile_pseudo_pop <- function(ci_appr, ...){
 
   # Passing packaging check() ----------------------------
   covar_bl_method <- NULL
-  matching_fun <- NULL
+  dist_measure <- NULL
   max_attempt <- NULL
   covar_bl_trs_type <- NULL
+  delta_n <- NULL
 
   required_args <- NULL
 
   # checkpoint 1 -----------------------------------------
-  #if (!is.element(ci_appr, c('matching','weighting','adjusting'))){
   if (!is.element(ci_appr, c('matching', 'weighting'))){
     stop(paste(ci_appr, " is not a valid causal inference approach."))
   }
@@ -155,7 +155,7 @@ check_args_compile_pseudo_pop <- function(ci_appr, ...){
   # checkpoint 2 ------------------------------------------
   if (ci_appr == 'matching'){
     required_args <- c(required_args, 'covar_bl_method', 'covar_bl_trs',
-                       'covar_bl_trs_type','matching_fun', 'delta_n', 'scale')
+                       'covar_bl_trs_type','dist_measure', 'delta_n', 'scale')
   }
 
   # checkpoint 3 ------------------------------------------
@@ -182,13 +182,23 @@ check_args_compile_pseudo_pop <- function(ci_appr, ...){
   }
 
   if (is.element(ci_appr, c('matching'))){
-    if (!is.element(matching_fun, c('matching_l1'))){
-      stop(paste(matching_fun, " is not a valid matching function."))
+    if (!is.element(dist_measure, c('l1'))){
+      stop(paste(dist_measure, " is not a valid distance measure."))
     }
 
     if (scale < 0 || scale > 1){
       stop(paste("scale shoule be in [0,1] range. Current provided value: ",
                  scale))
+    }
+
+    if (!is.numeric(delta_n)){
+      if (is.null(delta_n)){
+        current_val <- "NULL"
+      } else {
+        current_val <- delta_n
+      }
+      stop(paste("The caliper size (delta_n) should be a numerical value. ",
+                 "Current value: ", current_val))
     }
   }
 
@@ -196,6 +206,8 @@ check_args_compile_pseudo_pop <- function(ci_appr, ...){
     stop(paste(covar_bl_method, " is not a valid covar balance type.",
                " Available options: mean, median, maximal."))
   }
+
+
 
   invisible(TRUE)
 }

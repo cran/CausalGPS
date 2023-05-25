@@ -1,8 +1,36 @@
+## CausalGPS 0.4.0 (2023-05-26)
+
+### Changed
+
+* Docker image supports R 4.2.3
+* `generate_syn_data` supports `vectorized_y` to accelerate data generation.
+* `matching_fun` --> `dist_measure`
+* `matching_l1` --> `matching_fn`
+* `estimate_semipmetric_erf` now takes the `gam` models optional arguments.
+* `estimate_pmetric_erf` now takes the `gnm` models optional arguments.
+* `trim_quantiles` --> `exposure_trim_qtls`
+* `generate_pseudo_pop` function accepts `gps_obj` as an optional input.
+* `internal_use` is not part of parameters for `estimate_gps` function. 
+* `estimate_gps` function only returns `id`, `w`, and computed `gps` as part of dataset.
+* Now the design and analysis phases are explicitly separated.
+* `gps_model` --> `gps_density`. Now it takes, `normal` and `kernel` options instead of `parametric` and `non-parametric` options.
+
+
+### Added
+
+* `estimate_npmetric_erf` supports both `locpol` and `KernSmooth` approaches.
+* There is `gps_trim_qtls` input parameter to trim data samples based on gps values.
+* Now users can also collect the original data in the pseudo population object.
+
+### Fixed
+
+* A bug with swapping transformed covairates with original one.
+
 ## CausalGPS 0.3.1 (2023-05-15)
 
 ### Changed
 
-* Some of unit tests have less accuracy to overcome the bug with `stats::density` function.
+* Some of unit tests have less accuracy to overcome the bug with `stats::density` function. 
 
 ## CausalGPS 0.3.0 (2023-02-15)
 

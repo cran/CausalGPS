@@ -4,7 +4,7 @@
 \alias{estimate_semipmetric_erf}
 \title{Estimate semi-exposure-response function (semi-ERF).}
 \usage{
-estimate_semipmetric_erf(formula, family, data, ci_appr)
+estimate_semipmetric_erf(formula, family, data, ...)
 }
 \arguments{
 \item{formula}{a vector of outcome variable in matched set.}
@@ -13,7 +13,7 @@ estimate_semipmetric_erf(formula, family, data, ci_appr)
 
 \item{data}{dataset that formula is build upon.}
 
-\item{ci_appr}{causal inference approach (matching or weighting).}
+\item{...}{Additional parameters for further fine tuning the gam model.}
 }
 \value{
 returns an object of class gam
@@ -27,11 +27,10 @@ This approach uses Generalized Additive Model (gam) using mgcv package.
 }
 \examples{
 m_d <- generate_syn_data(sample_size = 100)
-pseudo_pop <- generate_pseudo_pop(m_d$Y,
-                                  m_d$treat,
-                                  m_d[c("cf1","cf2","cf3","cf4","cf5","cf6")],
+pseudo_pop <- generate_pseudo_pop(m_d[, c("id", "Y")],
+                                  m_d[, c("id", "w")],
+                                  m_d[, c("id", "cf1","cf2","cf3","cf4","cf5","cf6")],
                                   ci_appr = "matching",
-                                  pred_model = "sl",
                                   sl_lib = c("m_xgboost"),
                                   params = list(xgb_nrounds=c(10,20,30),
                                    xgb_eta=c(0.1,0.2,0.3)),
@@ -40,14 +39,13 @@ pseudo_pop <- generate_pseudo_pop(m_d$Y,
                                   covar_bl_trs = 0.1,
                                   covar_bl_trs_type = "mean",
                                   max_attempt = 1,
-                                  matching_fun = "matching_l1",
+                                  dist_measure = "l1",
                                   delta_n = 1,
                                   scale = 0.5)
 
 outcome_m <- estimate_semipmetric_erf (formula = Y ~ w,
                                        family = gaussian,
-                                       data = pseudo_pop$pseudo_pop,
-                                       ci_appr = "matching")
+                                       data = pseudo_pop$pseudo_pop)
 
 
 }

@@ -12,20 +12,22 @@ test_that("generate_pseudo_pop works as expected.", {
   mydata$region <- as.factor(region)
   mydata$cf5 <- as.factor(mydata$cf5)
 
+  mydata$id <- seq_along(1:nrow(mydata))
 
-  ps_pop1 <- generate_pseudo_pop(mydata$Y,
-                                 mydata$treat,
-                                 mydata[c("cf1","cf2","cf3","cf4","cf5",
-                                          "cf6","year","region")],
+  ps_pop1 <- generate_pseudo_pop(mydata[, c("id", "Y")],
+                                 mydata[, c("id", "w")],
+                                 mydata[c("id", "cf1", "cf2", "cf3",
+                                          "cf4", "cf5", "cf6", "year",
+                                          "region")],
                                  ci_appr = "matching",
-                                 gps_model = "non-parametric",
-                                 trim_quantiles = c(0.01,0.99),
+                                 gps_density = "kernel",
+                                 exposure_trim_qtls = c(0.01,0.99),
                                  sl_lib = c("m_xgboost"),
                                  covar_bl_method = "absolute",
                                  covar_bl_trs = 0.1,
                                  covar_bl_trs_type = "mean",
                                  max_attempt = 1,
-                                 matching_fun = "matching_l1",
+                                 dist_measure = "l1",
                                  delta_n = 1,
                                  scale = 0.5,
                                  nthread = 1)
@@ -49,19 +51,19 @@ test_that("generate_pseudo_pop works as expected.", {
   expect_true(("best_gps_used_params" %in% names(ps_pop1)))
   expect_true(("covariate_cols_name" %in% names(ps_pop1)))
 
-  ps_pop2 <- generate_pseudo_pop(mydata$Y,
-                                 mydata$treat,
-                                 mydata[c("cf1","cf2","cf3","cf4","cf5",
+  ps_pop2 <- generate_pseudo_pop(mydata[, c("id", "Y")],
+                                 mydata[, c("id", "w")],
+                                 mydata[, c("id", "cf1","cf2","cf3","cf4","cf5",
                                           "cf6","year","region")],
                                  ci_appr = "matching",
-                                 gps_model = "parametric",
-                                 trim_quantiles = c(0.04,0.96),
+                                 gps_density = "normal",
+                                 exposure_trim_qtls = c(0.04,0.96),
                                  sl_lib = c("m_xgboost"),
                                  covar_bl_method = "absolute",
                                  covar_bl_trs = 0.1,
                                  covar_bl_trs_type = "mean",
                                  max_attempt = 1,
-                                 matching_fun = "matching_l1",
+                                 dist_measure = "l1",
                                  delta_n = 1,
                                  scale = 0.5,
                                  nthread = 1)
@@ -74,104 +76,106 @@ test_that("generate_pseudo_pop works as expected.", {
                tolerance = 0.000001)
 
   # expect error with wrong ci_appr
-  expect_error(generate_pseudo_pop(mydata$Y,
-                                   mydata$treat,
-                                   mydata[c("cf1","cf2","cf3","cf4","cf5",
+  expect_error(generate_pseudo_pop(mydata[, c("id", "Y")],
+                                   mydata[, c("id", "w")],
+                                   mydata[c("id", "cf1","cf2","cf3","cf4","cf5",
                                             "cf6","year","region")],
                                    ci_appr = "grounding",
-                                   gps_model = "parametric",
-                                   trim_quantiles = c(0.04,0.96),
+                                   gps_density = "normal",
+                                   exposure_trim_qtls = c(0.04,0.96),
                                    sl_lib = c("m_xgboost"),
                                    covar_bl_method = "absolute",
                                    covar_bl_trs = 0.1,
                                    covar_bl_trs_type = "mean",
                                    max_attempt = 1,
-                                   matching_fun = "matching_l1",
+                                   dist_measure = "l1",
                                    delta_n = 1,
                                    scale = 0.5,
                                    nthread = 1))
 
-  # expect error with wrong gps_model
-  expect_error(generate_pseudo_pop(mydata$Y,
-                                   mydata$treat,
-                                   mydata[c("cf1","cf2","cf3","cf4","cf5",
-                                            "cf6","year","region")],
+  # expect error with wrong gps_density
+  expect_error(generate_pseudo_pop(mydata[, c("id", "Y")],
+                                   mydata[, c("id", "w")],
+                                   mydata[, c("id", "cf1","cf2","cf3",
+                                              "cf4","cf5",
+                                              "cf6","year","region")],
                                    ci_appr = "matching",
-                                   gps_model = "half-parametric",
-                                   trim_quantiles = c(0.04,0.96),
+                                   gps_density = "half-parametric",
+                                   exposure_trim_qtls = c(0.04,0.96),
                                    sl_lib = c("m_xgboost"),
                                    covar_bl_method = "absolute",
                                    covar_bl_trs = 0.1,
                                    covar_bl_trs_type = "mean",
                                    max_attempt = 1,
-                                   matching_fun = "matching_l1",
+                                   dist_measure = "l1",
                                    delta_n = 1,
                                    scale = 0.5,
                                    nthread = 1))
 
   # expect error with wrong max attempt
-  expect_error(generate_pseudo_pop(mydata$Y,
-                                   mydata$treat,
-                                   mydata[c("cf1","cf2","cf3","cf4","cf5",
-                                            "cf6","year","region")],
+  expect_error(generate_pseudo_pop(mydata[, c("id", "Y")],
+                                   mydata[, c("id", "w")],
+                                   mydata[, c("id", "cf1", "cf2", "cf3", "cf4",
+                                              "cf5", "cf6", "year", "region")],
                                    ci_appr = "matching",
-                                   gps_model = "parametric",
-                                   trim_quantiles = c(0.04,0.96),
+                                   gps_density = "normal",
+                                   exposure_trim_qtls = c(0.04,0.96),
                                    sl_lib = c("m_xgboost"),
                                    covar_bl_method = "absolute",
                                    covar_bl_trs = 0.1,
                                    covar_bl_trs_type = "mean",
                                    max_attempt = "five",
-                                   matching_fun = "matching_l1",
+                                   dist_measure = "l1",
                                    delta_n = 1,
                                    scale = 0.5,
                                    nthread = 1))
 
   # expect error with wrong covar_bl_method
-  expect_error(generate_pseudo_pop(mydata$Y,
-                                   mydata$treat,
-                                   mydata[c("cf1","cf2","cf3","cf4","cf5",
-                                            "cf6","year","region")],
+  expect_error(generate_pseudo_pop(mydata[, c("id", "Y")],
+                                   mydata[, c("id", "w")],
+                                   mydata[, c("id", "cf1","cf2","cf3","cf4",
+                                              "cf5",
+                                              "cf6","year","region")],
                                    ci_appr = "matching",
-                                   gps_model = "parametric",
-                                   trim_quantiles = c(0.04,0.96),
+                                   gps_density = "normal",
+                                   exposure_trim_qtls = c(0.04,0.96),
                                    sl_lib = c("m_xgboost"),
                                    covar_bl_method = "nonabsolute",
                                    covar_bl_trs = 0.1,
                                    covar_bl_trs_type = "mean",
                                    max_attempt = 1,
-                                   matching_fun = "matching_l1",
+                                   dist_measure = "l1",
                                    delta_n = 1,
                                    scale = 0.5,
                                    nthread = 1))
 
 
   # expect error with wrong scale
-  expect_error(generate_pseudo_pop(mydata$Y,
-                                   mydata$treat,
-                                   mydata[c("cf1","cf2","cf3","cf4","cf5",
+  expect_error(generate_pseudo_pop(mydata[, c("id", "Y")],
+                                   mydata[, c("id", "w")],
+                                   mydata[, c("id", "cf1","cf2","cf3","cf4","cf5",
                                             "cf6","year","region")],
                                    ci_appr = "matching",
-                                   gps_model = "parametric",
-                                   trim_quantiles = c(0.04,0.96),
+                                   gps_density = "normal",
+                                   exposure_trim_qtls = c(0.04,0.96),
                                    sl_lib = c("m_xgboost"),
                                    covar_bl_method = "absolute",
                                    covar_bl_trs = 0.1,
                                    covar_bl_trs_type = "mean",
                                    max_attempt = 1,
-                                   matching_fun = "matching_l1",
+                                   dist_measure = "l1",
                                    delta_n = 1,
                                    scale = 1.5,
                                    nthread = 1))
 
   #expect error with wrong answer in using cove transform.
-  expect_error(generate_pseudo_pop(mydata$Y,
-                                   mydata$treat,
-                                   mydata[c("cf1","cf2","cf3","cf4","cf5",
+  expect_error(generate_pseudo_pop(mydata[, c("id", "Y")],
+                                   mydata[, c("id", "w")],
+                                   mydata[c("id","cf1","cf2","cf3","cf4","cf5",
                                             "cf6","year","region")],
                                    ci_appr = "matching",
-                                   gps_model = "parametric",
-                                   trim_quantiles = c(0.04,0.96),
+                                   gps_density = "normal",
+                                   exposure_trim_qtls = c(0.04,0.96),
                                    use_cov_transform = "YES",
                                    transformers = list("pow2","pow3"),
                                    sl_lib = c("m_xgboost"),
@@ -179,20 +183,21 @@ test_that("generate_pseudo_pop works as expected.", {
                                    covar_bl_trs = 0.1,
                                    covar_bl_trs_type = "mean",
                                    max_attempt = 4,
-                                   matching_fun = "matching_l1",
+                                   dist_measure = "l1",
                                    delta_n = 1,
                                    scale = 0.5,
                                    nthread = 1))
 
 
   #expect error with wrong transformers.
-  expect_error(generate_pseudo_pop(mydata$Y,
-                                   mydata$treat,
-                                   mydata[c("cf1","cf2","cf3","cf4","cf5",
-                                            "cf6","year","region")],
+  expect_error(generate_pseudo_pop(mydata[, c("id", "Y")],
+                                   mydata[, c("id", "w")],
+                                   mydata[, c("id", "cf1", "cf2", "cf3",
+                                              "cf4", "cf5",
+                                              "cf6", "year", "region")],
                                    ci_appr = "matching",
-                                   gps_model = "parametric",
-                                   trim_quantiles = c(0.04,0.96),
+                                   gps_density = "normal",
+                                   exposure_trim_qtls = c(0.04,0.96),
                                    use_cov_transform = TRUE,
                                    transformers = numeric(),
                                    sl_lib = c("m_xgboost"),
@@ -200,44 +205,46 @@ test_that("generate_pseudo_pop works as expected.", {
                                    covar_bl_trs = 0.1,
                                    covar_bl_trs_type = "mean",
                                    max_attempt = 4,
-                                   matching_fun = "matching_l1",
+                                   dist_measure = "l1",
                                    delta_n = 1,
                                    scale = 0.5,
                                    nthread = 1))
 
 
   # expect error with missing parameter
-  expect_error(generate_pseudo_pop(mydata$Y,
-                                   mydata$treat,
-                                   mydata[c("cf1","cf2","cf3","cf4","cf5",
-                                            "cf6","year","region")],
+  expect_error(generate_pseudo_pop(mydata[, c("id", "Y")],
+                                   mydata[, c("id", "w")],
+                                   mydata[, c("id", "cf1", "cf2", "cf3",
+                                              "cf4", "cf5", "cf6", "year",
+                                              "region")],
                                    ci_appr = "matching",
-                                   gps_model = "parametric",
-                                   trim_quantiles = c(0.04,0.96),
+                                   gps_density = "normal",
+                                   exposure_trim_qtls = c(0.04,0.96),
                                    use_cov_transform = TRUE,
                                    sl_lib = c("m_xgboost"),
                                    covar_bl_method = "absolute",
                                    covar_bl_trs = 0.1,
                                    max_attempt = 1,
-                                   matching_fun = "matching_l1",
+                                   dist_measure = "l1",
                                    delta_n = 1,
                                    scale = 0.5,
                                    nthread = 1))
 
   # Test on weighting
-  ps_pop3 <- generate_pseudo_pop(mydata$Y,
-                                 mydata$treat,
-                                 mydata[c("cf1","cf2","cf3","cf4","cf5",
-                                          "cf6","year","region")],
+  ps_pop3 <- generate_pseudo_pop(mydata[, c("id", "Y")],
+                                 mydata[, c("id", "w")],
+                                 mydata[, c("id", "cf1", "cf2", "cf3",
+                                            "cf4", "cf5", "cf6", "year",
+                                            "region")],
                                  ci_appr = "weighting",
-                                 gps_model = "parametric",
-                                 trim_quantiles = c(0.04,0.96),
+                                 gps_density = "normal",
+                                 exposure_trim_qtls = c(0.04,0.96),
                                  sl_lib = c("m_xgboost"),
                                  covar_bl_method = "absolute",
                                  covar_bl_trs = 0.1,
                                  covar_bl_trs_type = "mean",
                                  max_attempt = 1,
-                                 matching_fun = "matching_l1",
+                                 dist_measure = "l1",
                                  delta_n = 1,
                                  scale = 0.5,
                                  nthread = 1)
@@ -249,13 +256,13 @@ test_that("generate_pseudo_pop works as expected.", {
                0.3750209,
                tolerance = 0.001)
 
-  ps_pop4 <- generate_pseudo_pop(mydata$Y,
-                                 mydata$treat,
-                                 mydata[c("cf1","cf2","cf3","cf4","cf5",
+  ps_pop4 <- generate_pseudo_pop(mydata[, c("id", "Y")],
+                                 mydata[, c("id", "w")],
+                                 mydata[, c("id", "cf1","cf2","cf3","cf4","cf5",
                                           "cf6","year","region")],
                                  ci_appr = "matching",
-                                 gps_model = "parametric",
-                                 trim_quantiles = c(0.04,0.96),
+                                 gps_density = "normal",
+                                 exposure_trim_qtls = c(0.04,0.96),
                                  use_cov_transform = TRUE,
                                  transformers = list("pow2","pow3"),
                                  sl_lib = c("m_xgboost"),
@@ -263,7 +270,7 @@ test_that("generate_pseudo_pop works as expected.", {
                                  covar_bl_trs = 0.1,
                                  covar_bl_trs_type = "mean",
                                  max_attempt = 4,
-                                 matching_fun = "matching_l1",
+                                 dist_measure = "l1",
                                  delta_n = 1,
                                  scale = 0.5,
                                  nthread = 1)
@@ -276,12 +283,13 @@ test_that("generate_pseudo_pop works as expected.", {
                tolerance = 0.000001)
 
 
-  expect_warning(ps_pop5 <- generate_pseudo_pop(mydata$Y,
-                                 mydata$treat,
-                                 mydata[c("cf1","cf2","cf4")],
+  ps_pop5 <- generate_pseudo_pop(
+                                 mydata[, c("id", "Y")],
+                                 mydata[, c("id", "w")],
+                                 mydata[, c("id", "cf1","cf2","cf4")],
                                  ci_appr = "matching",
-                                 gps_model = "parametric",
-                                 trim_quantiles = c(0.04,0.96),
+                                 gps_density = "normal",
+                                 exposure_trim_qtls = c(0.04,0.96),
                                  use_cov_transform = TRUE,
                                  transformers = list("pow2","pow3"),
                                  sl_lib = c("m_xgboost"),
@@ -289,10 +297,10 @@ test_that("generate_pseudo_pop works as expected.", {
                                  covar_bl_trs = 0.02,
                                  covar_bl_trs_type = "mean",
                                  max_attempt = 7,
-                                 matching_fun = "matching_l1",
+                                 dist_measure = "l1",
                                  delta_n = 1,
                                  scale = 0.5,
-                                 nthread = 1))
+                                 nthread = 1)
 
   expect_equal(class(ps_pop5),"gpsm_pspop")
   expect_false(ps_pop5$passed_covar_test)
@@ -300,5 +308,104 @@ test_that("generate_pseudo_pop works as expected.", {
   expect_equal(ps_pop5$adjusted_corr_results$mean_absolute_corr,
                0.1076907,
                tolerance = 0.000001)
+
+  set.seed(382)
+  ps_pop6 <- generate_pseudo_pop(mydata[, c("id", "Y")],
+                                 mydata[, c("id", "w")],
+                                 mydata[, c("id", "cf1","cf2","cf3","cf4","cf5",
+                                          "cf6","year","region")],
+                                 ci_appr = "matching",
+                                 gps_density = "kernel",
+                                 exposure_trim_qtls = c(0.01,0.99),
+                                 sl_lib = c("m_xgboost"),
+                                 covar_bl_method = "absolute",
+                                 covar_bl_trs = 0.1,
+                                 covar_bl_trs_type = "mean",
+                                 max_attempt = 1,
+                                 dist_measure = "l1",
+                                 delta_n = 1,
+                                 scale = 0.5,
+                                 nthread = 1,
+                                 include_original_data = TRUE)
+
+
+  expect_equal(length(ps_pop6$original_data), 11)
+  expect_equal(nrow(ps_pop6$original_data), 500)
+
+})
+
+
+test_that("generate_pseudo_pop catches errors.", {
+
+  set.seed(897)
+  n <- 500
+  mydata <- generate_syn_data(sample_size=n)
+  year <- sample(x=c("2001","2002","2003","2004","2005"),
+                 size = n, replace = TRUE)
+  region <- sample(x=c("North", "South", "East", "West"),
+                   size = n, replace = TRUE)
+
+  mydata$year <- as.factor(year)
+  mydata$region <- as.factor(region)
+  mydata$cf5 <- as.factor(mydata$cf5)
+
+  mydata$id <- seq_along(1:nrow(mydata))
+
+  expect_error(generate_pseudo_pop(mydata[, c("Y")],
+                                 mydata[, c("id", "w")],
+                                 mydata[, c("id", "cf1", "cf2", "cf3",
+                                          "cf4", "cf5", "cf6", "year",
+                                          "region")],
+                                 ci_appr = "matching",
+                                 gps_density = "kernel",
+                                 exposure_trim_qtls = c(0.01,0.99),
+                                 sl_lib = c("m_xgboost"),
+                                 covar_bl_method = "absolute",
+                                 covar_bl_trs = 0.1,
+                                 covar_bl_trs_type = "mean",
+                                 max_attempt = 1,
+                                 dist_measure = "l1",
+                                 delta_n = 1,
+                                 scale = 0.5,
+                                 nthread = 1),
+               regexp = "Y should include id column.")
+
+  expect_error(generate_pseudo_pop(mydata[, c("id", "Y")],
+                                   mydata[, c("w")],
+                                   mydata[, c("id", "cf1", "cf2", "cf3",
+                                              "cf4", "cf5", "cf6", "year",
+                                              "region")],
+                                   ci_appr = "matching",
+                                   gps_density = "kernel",
+                                   exposure_trim_qtls = c(0.01,0.99),
+                                   sl_lib = c("m_xgboost"),
+                                   covar_bl_method = "absolute",
+                                   covar_bl_trs = 0.1,
+                                   covar_bl_trs_type = "mean",
+                                   max_attempt = 1,
+                                   dist_measure = "l1",
+                                   delta_n = 1,
+                                   scale = 0.5,
+                                   nthread = 1),
+               regexp = "w should include id column.")
+
+  expect_error(generate_pseudo_pop(mydata[, c("id", "Y")],
+                                   mydata[, c("id", "w")],
+                                   mydata[, c("cf1", "cf2", "cf3",
+                                              "cf4", "cf5", "cf6", "year",
+                                              "region")],
+                                   ci_appr = "matching",
+                                   gps_density = "kernel",
+                                   exposure_trim_qtls = c(0.01,0.99),
+                                   sl_lib = c("m_xgboost"),
+                                   covar_bl_method = "absolute",
+                                   covar_bl_trs = 0.1,
+                                   covar_bl_trs_type = "mean",
+                                   max_attempt = 1,
+                                   dist_measure = "l1",
+                                   delta_n = 1,
+                                   scale = 0.5,
+                                   nthread = 1),
+               regexp = "c should include id column.")
 
 })

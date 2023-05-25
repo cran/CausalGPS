@@ -368,10 +368,10 @@ main) branch. The <code>master</code> branch hosts the latest released
 code. The latest updates are committed to the <code>develop</code>
 branch. For more details please refer <em>Git Branching Model</em> in
 the Developers Guide section.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>(<span class="fu">detach</span>(<span class="st">&quot;package:CausalGPS&quot;</span>, <span class="at">unload =</span> <span class="cn">TRUE</span>), <span class="at">silent =</span> <span class="cn">TRUE</span>) <span class="co"># if already you have the package, detach and unload it, to have a new install. </span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">&quot;NSAPH-Software/CausalGPS&quot;</span>, <span class="at">ref=</span><span class="st">&quot;develop&quot;</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CausalGPS)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">try</span>(<span class="fu">detach</span>(<span class="st">&quot;package:CausalGPS&quot;</span>, <span class="at">unload =</span> <span class="cn">TRUE</span>), <span class="at">silent =</span> <span class="cn">TRUE</span>) <span class="co"># if already you have the package, detach and unload it, to have a new install. </span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">&quot;NSAPH-Software/CausalGPS&quot;</span>, <span class="at">ref=</span><span class="st">&quot;develop&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">library</span>(CausalGPS)</span></code></pre></div>
 <p>The process should run smoothly. Try <code>?CausalGPS</code>. It
 should open the package description page under the help tab (assuming
 you are using RStudio).</p>
@@ -443,19 +443,19 @@ innovation, one can add categorical data. In the following, we present
 some reproducible examples that you can copy and build upon them.</p>
 <div id="generating-synthetic-data" class="section level3">
 <h3>Generating Synthetic Data</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;CausalGPS&quot;</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">generate_syn_data</span>(<span class="at">sample_size =</span> <span class="dv">10000</span>) </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mydata)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;data.frame&#39;:  10000 obs. of  8 variables:</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># $ Y    : num  -17 3.66 -45.88 -12.12 2.75 ...</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># $ treat: num  9.74 14.88 5.22 10.19 16.65 ...</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># $ cf1  : num  -0.128 0.155 -1.271 0.551 0.846 ...</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># $ cf2  : num  0.2376 0.0466 0.8918 -1.8434 -2.4487 ...</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># $ cf3  : num  1.5492 -0.4453 0.0718 0.8309 0.6749 ...</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># $ cf4  : num  1.3738 0.8621 0.4735 0.7013 -0.0851 ...</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># $ cf5  : num  -2 2 1 -2 0 1 1 2 -2 -1 ...</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># $ cf6  : num  -1.794 -1.822 0.79 -0.591 2.673 ...</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;CausalGPS&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">generate_syn_data</span>(<span class="at">sample_size =</span> <span class="dv">10000</span>) </span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">str</span>(mydata)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&#39;data.frame&#39;:  10000 obs. of  8 variables:</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># $ Y    : num  -17 3.66 -45.88 -12.12 2.75 ...</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co"># $ treat: num  9.74 14.88 5.22 10.19 16.65 ...</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co"># $ cf1  : num  -0.128 0.155 -1.271 0.551 0.846 ...</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co"># $ cf2  : num  0.2376 0.0466 0.8918 -1.8434 -2.4487 ...</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co"># $ cf3  : num  1.5492 -0.4453 0.0718 0.8309 0.6749 ...</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co"># $ cf4  : num  1.3738 0.8621 0.4735 0.7013 -0.0851 ...</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co"># $ cf5  : num  -2 2 1 -2 0 1 1 2 -2 -1 ...</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co"># $ cf6  : num  -1.794 -1.822 0.79 -0.591 2.673 ...</span></span></code></pre></div>
 </div>
 <div id="estimating-gps-values-for-the-dataset" class="section level3">
 <h3>Estimating GPS Values for the Dataset</h3>
@@ -480,47 +480,47 @@ list at random and will generate a customize wrapper based on them. If
 you want to use a specific value, just give a list one number (e.g.,
 xgb_max_depth = c(3)). All parameters that start with <code>xgb_</code>
 will only change XGBoost hyperparameters.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;CausalGPS&quot;</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">generate_syn_data</span>(<span class="at">sample_size =</span> <span class="dv">10000</span>) </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data_with_gps <span class="ot">&lt;-</span> <span class="fu">estimate_gps</span>(mydata<span class="sc">$</span>Y,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                              mydata<span class="sc">$</span>treat,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                              mydata[<span class="fu">c</span>(<span class="st">&quot;cf1&quot;</span>,<span class="st">&quot;cf2&quot;</span>,<span class="st">&quot;cf3&quot;</span>,<span class="st">&quot;cf4&quot;</span>,<span class="st">&quot;cf5&quot;</span>,<span class="st">&quot;cf6&quot;</span>)],</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">internal_use =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">params =</span> <span class="fu">list</span>(<span class="at">xgb_max_depth =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>),</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">xgb_nrounds=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>)),</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                              <span class="at">nthread =</span> <span class="dv">1</span>,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                              <span class="at">sl_lib =</span> <span class="fu">c</span>(<span class="st">&quot;m_xgboost&quot;</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                             )</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;CausalGPS&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">generate_syn_data</span>(<span class="at">sample_size =</span> <span class="dv">10000</span>) </span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>data_with_gps <span class="ot">&lt;-</span> <span class="fu">estimate_gps</span>(mydata[, <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;Y&quot;</span>)],</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                              mydata[, <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, w<span class="st">&quot;)],</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="st">                              mydata[, c(&quot;</span>id<span class="st">&quot;, &quot;</span>cf1<span class="st">&quot;, &quot;</span>cf2<span class="st">&quot;, &quot;</span>cf3<span class="st">&quot;, </span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="st">                                         &quot;</span>cf4<span class="st">&quot;,&quot;</span>cf5<span class="st">&quot;,&quot;</span>cf6<span class="st">&quot;)],</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="st">                              params = list(xgb_max_depth = c(3,4,5),</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="st">                                       xgb_nrounds=c(10,20,30,40,50,60)),</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="st">                              nthread = 1,</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="st">                              sl_lib = c(&quot;</span>m_xgboost<span class="st">&quot;)</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="st">                             )</span></span></code></pre></div>
 <p>Now, let’s add some categorical data. Let’s say our data belongs to 5
 different years (2000 observations per year), and each year we have data
 from 4 different regions, including <em>North</em>, <em>South</em>,
 <em>East</em>, and <em>West</em>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;CausalGPS&quot;</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">generate_syn_data</span>(<span class="at">sample_size =</span> <span class="dv">10000</span>) </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2001&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>),</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>          <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2002&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>),</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>          <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2003&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>),</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>          <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2004&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>), </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>          <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2005&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>))</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>region <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;North&quot;</span>,<span class="at">each=</span><span class="dv">500</span>),</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                <span class="fu">rep</span>(<span class="st">&quot;South&quot;</span>,<span class="at">each=</span><span class="dv">500</span>),</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                <span class="fu">rep</span>(<span class="st">&quot;East&quot;</span>,<span class="at">each=</span><span class="dv">500</span>),</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                <span class="fu">rep</span>(<span class="st">&quot;West&quot;</span>,<span class="at">each=</span><span class="dv">500</span>)), <span class="at">each=</span><span class="dv">5</span>)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(year)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>region <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(region)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>data_with_gps <span class="ot">&lt;-</span> <span class="fu">estimate_gps</span>(mydata<span class="sc">$</span>Y,</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                              mydata<span class="sc">$</span>treat,</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                              mydata[<span class="fu">c</span>(<span class="st">&quot;cf1&quot;</span>,<span class="st">&quot;cf2&quot;</span>,<span class="st">&quot;cf3&quot;</span>,<span class="st">&quot;cf4&quot;</span>,<span class="st">&quot;cf5&quot;</span>,<span class="st">&quot;cf6&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;region&quot;</span>)],</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                              <span class="at">internal_use =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                              <span class="at">params =</span> <span class="fu">list</span>(<span class="at">xgb_max_depth =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>),</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">xgb_nrounds=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>)),</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>                              <span class="at">nthread =</span> <span class="dv">1</span>,</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                              <span class="at">sl_lib =</span> <span class="fu">c</span>(<span class="st">&quot;m_xgboost&quot;</span>)</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                             )</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;CausalGPS&quot;</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">generate_syn_data</span>(<span class="at">sample_size =</span> <span class="dv">10000</span>) </span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2001&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>          <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2002&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>          <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2003&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>),</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>          <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2004&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>), </span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>          <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2005&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>))</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>region <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;North&quot;</span>,<span class="at">each=</span><span class="dv">500</span>),</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>                <span class="fu">rep</span>(<span class="st">&quot;South&quot;</span>,<span class="at">each=</span><span class="dv">500</span>),</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>                <span class="fu">rep</span>(<span class="st">&quot;East&quot;</span>,<span class="at">each=</span><span class="dv">500</span>),</span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>                <span class="fu">rep</span>(<span class="st">&quot;West&quot;</span>,<span class="at">each=</span><span class="dv">500</span>)), <span class="at">each=</span><span class="dv">5</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>mydata<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(year)</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>mydata<span class="sc">$</span>region <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(region)</span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a>data_with_gps <span class="ot">&lt;-</span> <span class="fu">estimate_gps</span>(mydata[, <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;Y&quot;</span>)],</span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a>                              mydata[, <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;w&quot;</span>)],</span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a>                              mydata[, <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;cf1&quot;</span>, <span class="st">&quot;cf2&quot;</span>, <span class="st">&quot;cf3&quot;</span>, <span class="st">&quot;cf4&quot;</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a>                                         <span class="st">&quot;cf5&quot;</span>, <span class="st">&quot;cf6&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;region&quot;</span>)],</span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a>                              <span class="at">params =</span> <span class="fu">list</span>(<span class="at">xgb_max_depth =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>),</span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a>                                       <span class="at">xgb_nrounds=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>)),</span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a>                              <span class="at">nthread =</span> <span class="dv">1</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a>                              <span class="at">sl_lib =</span> <span class="fu">c</span>(<span class="st">&quot;m_xgboost&quot;</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a>                             )</span></code></pre></div>
 </div>
 <div id="generating-pseudo-population" class="section level3">
 <h3>Generating Pseudo Population</h3>
@@ -543,83 +543,86 @@ approaches to compile pseudo population, including:</p>
 </ul>
 <p>Among different methods for testing covariate balance test, only
 <code>absolute</code> approach is implemented.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;CausalGPS&quot;</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">generate_syn_data</span>(<span class="at">sample_size =</span> <span class="dv">10000</span>) </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pseudo_pop <span class="ot">&lt;-</span> <span class="fu">generate_pseudo_pop</span>(mydata<span class="sc">$</span>Y,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                                  mydata<span class="sc">$</span>treat,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                                  mydata[<span class="fu">c</span>(<span class="st">&quot;cf1&quot;</span>,<span class="st">&quot;cf2&quot;</span>,<span class="st">&quot;cf3&quot;</span>,<span class="st">&quot;cf4&quot;</span>,<span class="st">&quot;cf5&quot;</span>,<span class="st">&quot;cf6&quot;</span>)],</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">ci_appr =</span> <span class="st">&quot;matching&quot;</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sl_lib =</span> <span class="fu">c</span>(<span class="st">&quot;m_xgboost&quot;</span>),</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">xgb_nrounds=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>),</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">xgb_eta=</span><span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.3</span>)),</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">nthread =</span> <span class="dv">1</span>,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_method =</span> <span class="st">&quot;absolute&quot;</span>,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_trs =</span> <span class="fl">0.1</span>,</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_trs_type=</span> <span class="st">&quot;mean&quot;</span>,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">max_attempt =</span> <span class="dv">1</span>,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">matching_fun =</span> <span class="st">&quot;matching_l1&quot;</span>,</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">delta_n =</span> <span class="dv">1</span>,</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">scale =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;CausalGPS&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">generate_syn_data</span>(<span class="at">sample_size =</span> <span class="dv">10000</span>) </span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>pseudo_pop <span class="ot">&lt;-</span> <span class="fu">generate_pseudo_pop</span>(mydata[, <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;Y&quot;</span>)],</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>                                  mydata[, <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;w&quot;</span>)],</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>                                  mydata[,<span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;cf1&quot;</span>, <span class="st">&quot;cf2&quot;</span>, </span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                                            <span class="st">&quot;cf3&quot;</span>, <span class="st">&quot;cf4&quot;</span>, <span class="st">&quot;cf5&quot;</span>, <span class="st">&quot;cf6&quot;</span>)],</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>                                  <span class="at">ci_appr =</span> <span class="st">&quot;matching&quot;</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>                                  <span class="at">sl_lib =</span> <span class="fu">c</span>(<span class="st">&quot;m_xgboost&quot;</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>                                  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">xgb_nrounds=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>),</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>                                  <span class="at">xgb_eta=</span><span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.3</span>)),</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>                                  <span class="at">nthread =</span> <span class="dv">1</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>                                  <span class="at">covar_bl_method =</span> <span class="st">&quot;absolute&quot;</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>                                  <span class="at">covar_bl_trs =</span> <span class="fl">0.1</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>                                  <span class="at">covar_bl_trs_type=</span> <span class="st">&quot;mean&quot;</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>                                  <span class="at">max_attempt =</span> <span class="dv">1</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a>                                  <span class="at">dist_measure =</span> <span class="st">&quot;matching_fn&quot;</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>                                  <span class="at">delta_n =</span> <span class="dv">1</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>                                  <span class="at">scale =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p>The second causal inference approach is <code>weighting</code>. Here
 is an example to generate pseudo population using <code>weighting</code>
 approach.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">generate_syn_data</span>(<span class="at">sample_size =</span> <span class="dv">10000</span>) </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2001&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2002&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>          <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2003&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>          <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2004&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>), </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>          <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2005&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>))</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>region <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;North&quot;</span>,<span class="at">each=</span><span class="dv">500</span>),</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>                <span class="fu">rep</span>(<span class="st">&quot;South&quot;</span>,<span class="at">each=</span><span class="dv">500</span>),</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>                <span class="fu">rep</span>(<span class="st">&quot;East&quot;</span>,<span class="at">each=</span><span class="dv">500</span>),</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>                <span class="fu">rep</span>(<span class="st">&quot;West&quot;</span>,<span class="at">each=</span><span class="dv">500</span>)), <span class="at">each=</span><span class="dv">5</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(year)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>region <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(region)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>pseudo_pop <span class="ot">&lt;-</span> <span class="fu">generate_pseudo_pop</span>(mydata<span class="sc">$</span>Y,</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>                                  mydata<span class="sc">$</span>treat,</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>                                  mydata[<span class="fu">c</span>(<span class="st">&quot;cf1&quot;</span>,<span class="st">&quot;cf2&quot;</span>,<span class="st">&quot;cf3&quot;</span>,<span class="st">&quot;cf4&quot;</span>,<span class="st">&quot;cf5&quot;</span>,<span class="st">&quot;cf6&quot;</span>,<span class="st">&quot;year&quot;</span>,<span class="st">&quot;region&quot;</span>)],</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">ci_appr =</span> <span class="st">&quot;weighting&quot;</span>,</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sl_lib =</span> <span class="fu">c</span>(<span class="st">&quot;m_xgboost&quot;</span>),</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">xgb_nrounds=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>),</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">xgb_eta=</span><span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.3</span>)),</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">nthread =</span> <span class="dv">1</span>,</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_method =</span> <span class="st">&quot;absolute&quot;</span>,</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_trs =</span> <span class="fl">0.1</span>,</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_trs_type =</span> <span class="st">&quot;mean&quot;</span>,</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">max_attempt =</span> <span class="dv">1</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>                                  )</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">generate_syn_data</span>(<span class="at">sample_size =</span> <span class="dv">10000</span>) </span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2001&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>          <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2002&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>          <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2003&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>          <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2004&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>), </span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>          <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2005&quot;</span>), <span class="at">each=</span><span class="dv">2000</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>region <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;North&quot;</span>,<span class="at">each=</span><span class="dv">500</span>),</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>                <span class="fu">rep</span>(<span class="st">&quot;South&quot;</span>,<span class="at">each=</span><span class="dv">500</span>),</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>                <span class="fu">rep</span>(<span class="st">&quot;East&quot;</span>,<span class="at">each=</span><span class="dv">500</span>),</span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>                <span class="fu">rep</span>(<span class="st">&quot;West&quot;</span>,<span class="at">each=</span><span class="dv">500</span>)), <span class="at">each=</span><span class="dv">5</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a>mydata<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(year)</span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a>mydata<span class="sc">$</span>region <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(region)</span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a>pseudo_pop <span class="ot">&lt;-</span> <span class="fu">generate_pseudo_pop</span>(mydata[, <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;Y&quot;</span>)],</span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a>                                  mydata[, <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;w&quot;</span>)],</span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a>                                  mydata[, <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;cf1&quot;</span>, <span class="st">&quot;cf2&quot;</span>, <span class="st">&quot;cf3&quot;</span>, </span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a>                                             <span class="st">&quot;cf4&quot;</span>,<span class="st">&quot;cf5&quot;</span>,<span class="st">&quot;cf6&quot;</span>, </span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a>                                             <span class="st">&quot;year&quot;</span>,<span class="st">&quot;region&quot;</span>)],</span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a>                                  <span class="at">ci_appr =</span> <span class="st">&quot;weighting&quot;</span>,</span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a>                                  <span class="at">sl_lib =</span> <span class="fu">c</span>(<span class="st">&quot;m_xgboost&quot;</span>),</span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a>                                  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">xgb_nrounds=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>),</span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a>                                   <span class="at">xgb_eta=</span><span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.3</span>)),</span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a>                                  <span class="at">nthread =</span> <span class="dv">1</span>,</span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a>                                  <span class="at">covar_bl_method =</span> <span class="st">&quot;absolute&quot;</span>,</span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a>                                  <span class="at">covar_bl_trs =</span> <span class="fl">0.1</span>,</span>
+<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a>                                  <span class="at">covar_bl_trs_type =</span> <span class="st">&quot;mean&quot;</span>,</span>
+<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a>                                  <span class="at">max_attempt =</span> <span class="dv">1</span></span>
+<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a>                                  )</span></code></pre></div>
 </div>
 <div id="further-processing" class="section level3">
 <h3>Further Processing</h3>
 <p>After generating a pseudo population, we can process the data for
 different purposes. So far, estimating exposure rate function
 (<code>estimate_erf</code>) is implemented.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(&quot;CausalGPS&quot;)</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">generate_syn_data</span>(<span class="at">sample_size =</span> <span class="dv">10000</span>) </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>pseudo_pop <span class="ot">&lt;-</span> <span class="fu">generate_pseudo_pop</span>(mydata<span class="sc">$</span>Y,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                                  mydata<span class="sc">$</span>treat,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                                  mydata[<span class="fu">c</span>(<span class="st">&quot;cf1&quot;</span>,<span class="st">&quot;cf2&quot;</span>,<span class="st">&quot;cf3&quot;</span>,<span class="st">&quot;cf4&quot;</span>,<span class="st">&quot;cf5&quot;</span>,<span class="st">&quot;cf6&quot;</span>)],</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">ci_appr =</span> <span class="st">&quot;matching&quot;</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sl_lib =</span> <span class="fu">c</span>(<span class="st">&quot;m_xgboost&quot;</span>),</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">xgb_nrounds=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>),</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">xgb_eta=</span><span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.3</span>)),</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">nthread =</span> <span class="dv">1</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_method =</span> <span class="st">&quot;absolute&quot;</span>,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_trs =</span> <span class="fl">0.1</span>,</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">covar_bl_trs_type=</span> <span class="st">&quot;mean&quot;</span>,</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">max_attempt =</span> <span class="dv">1</span>,</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">matching_fun =</span> <span class="st">&quot;matching_l1&quot;</span>,</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">delta_n =</span> <span class="dv">1</span>,</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">scale =</span> <span class="fl">0.5</span>)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>erf_val <span class="ot">&lt;-</span> <span class="fu">estimate_npmetric_erf</span>(pseudo_pop<span class="sc">$</span>pseudo_pop<span class="sc">$</span>Y,</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>                                 pseudo_pop<span class="sc">$</span>pseudo_pop<span class="sc">$</span>w,</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">bw_seq=</span><span class="fu">seq</span>(<span class="fl">0.2</span>,<span class="dv">2</span>,<span class="fl">0.2</span>),</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">w_vals =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">20</span>,<span class="fl">0.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># library(&quot;CausalGPS&quot;)</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">generate_syn_data</span>(<span class="at">sample_size =</span> <span class="dv">10000</span>) </span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>pseudo_pop <span class="ot">&lt;-</span> <span class="fu">generate_pseudo_pop</span>(mydata[, <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;Y&quot;</span>)],</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>                                  mydata[, <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;w&quot;</span>)],</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>                                  mydata[, <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;cf1&quot;</span>,<span class="st">&quot;cf2&quot;</span>,<span class="st">&quot;cf3&quot;</span>,<span class="st">&quot;cf4&quot;</span>,<span class="st">&quot;cf5&quot;</span>,<span class="st">&quot;cf6&quot;</span>)],</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>                                  <span class="at">ci_appr =</span> <span class="st">&quot;matching&quot;</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>                                  <span class="at">sl_lib =</span> <span class="fu">c</span>(<span class="st">&quot;m_xgboost&quot;</span>),</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>                                  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">xgb_nrounds=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>),</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>                                   <span class="at">xgb_eta=</span><span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.3</span>)),</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>                                  <span class="at">nthread =</span> <span class="dv">1</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>                                  <span class="at">covar_bl_method =</span> <span class="st">&quot;absolute&quot;</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>                                  <span class="at">covar_bl_trs =</span> <span class="fl">0.1</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>                                  <span class="at">covar_bl_trs_type=</span> <span class="st">&quot;mean&quot;</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>                                  <span class="at">max_attempt =</span> <span class="dv">1</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>                                  <span class="at">dist_measure =</span> <span class="st">&quot;l1&quot;</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>                                  <span class="at">delta_n =</span> <span class="dv">1</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>                                  <span class="at">scale =</span> <span class="fl">0.5</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>erf_val <span class="ot">&lt;-</span> <span class="fu">estimate_npmetric_erf</span>(pseudo_pop<span class="sc">$</span>pseudo_pop<span class="sc">$</span>Y,</span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>                                 pseudo_pop<span class="sc">$</span>pseudo_pop<span class="sc">$</span>w,</span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a>                                 <span class="at">bw_seq=</span><span class="fu">seq</span>(<span class="fl">0.2</span>,<span class="dv">2</span>,<span class="fl">0.2</span>),</span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a>                                 <span class="at">w_vals =</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">20</span>,<span class="fl">0.5</span>))</span></code></pre></div>
 </div>
 </div>
 <div id="steps-for-using-precomputed-data-during-the-test" class="section level2">
@@ -640,28 +643,28 @@ This is sufficient for changing the data; however, you need to address
 it before submitting a pull request.</p></li>
 <li><p>Step 2: Create a backup data from the current data.</p></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in terminal</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>cp  R<span class="op">/</span>sysdata.rda R<span class="op">/</span>sysdata_backup.rda</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># in terminal</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>cp  R<span class="op">/</span>sysdata.rda R<span class="op">/</span>sysdata_backup.rda</span></code></pre></div>
 <ul>
 <li>Step 3: Clean Global environment</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span></code></pre></div>
 <ul>
 <li>Step 4: Load current data and store the names</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;R/sysdata.rd&quot;</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>list_names <span class="ot">&lt;-</span> <span class="fu">ls</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;R/sysdata.rd&quot;</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>list_names <span class="ot">&lt;-</span> <span class="fu">ls</span>()</span></code></pre></div>
 <ul>
 <li>Step 5: Generate your data (mydata) and make sure to add steps to
 reproduce that data as a comment in your test file.</li>
 <li>Step 6: Add new data name to <code>list_names</code>. Please note
 the quotes. You do not need to add data, just the name.</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>list_names <span class="ot">&lt;-</span> <span class="fu">c</span>(list_names, <span class="st">&quot;mydata&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>list_names <span class="ot">&lt;-</span> <span class="fu">c</span>(list_names, <span class="st">&quot;mydata&quot;</span>) </span></code></pre></div>
 <ul>
 <li>Step 7: Save the data.</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(<span class="at">list=</span>list_names, <span class="at">file=</span><span class="st">&quot;R/sysdata.rda&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">save</span>(<span class="at">list=</span>list_names, <span class="at">file=</span><span class="st">&quot;R/sysdata.rda&quot;</span>)</span></code></pre></div>
 <ul>
 <li>Step 8: Run <code>check()/test()</code> to make sure that it passes
 all tests. If it does not pass all tests, address the problem.</li>
