@@ -2,7 +2,7 @@ Package: CausalGPS
 Type: Package
 Title: Matching on Generalized Propensity Scores with Continuous
         Exposures
-Version: 0.4.0
+Version: 0.4.1
 Authors@R: c(
     person("Naeem", "Khoshnevis", email = "nkhoshnevis@g.harvard.edu",
            role=c("aut","cre"), 
@@ -27,18 +27,18 @@ BugReports: https://github.com/NSAPH-Software/CausalGPS/issues
 Copyright: Harvard University
 Imports: parallel, data.table, SuperLearner, xgboost, gam, MASS,
         polycor, wCorr, stats, ggplot2, rlang, logger, Rcpp, gnm,
-        locpol, Ecume, KernSmooth
+        locpol, Ecume, KernSmooth, cowplot
 Encoding: UTF-8
 RoxygenNote: 7.2.3
-Suggests: covr, knitr, rmarkdown, ranger, earth, testthat
+Suggests: covr, knitr, rmarkdown, ranger, earth, testthat, gridExtra
 VignetteBuilder: knitr
 Depends: R (>= 3.5.0)
 LinkingTo: Rcpp
 NeedsCompilation: yes
-Packaged: 2023-05-25 21:12:24 UTC; nak443
+Packaged: 2023-09-29 23:27:12 UTC; rstudio
 Author: Naeem Khoshnevis [aut, cre] (<https://orcid.org/0000-0003-4315-1426>,
     HUIT),
   Xiao Wu [aut] (<https://orcid.org/0000-0002-4884-657X>, HSPH),
   Danielle Braun [aut] (<https://orcid.org/0000-0002-5177-8598>, HSPH)
 Repository: CRAN
-Date/Publication: 2023-05-25 21:40:02 UTC
+Date/Publication: 2023-09-29 23:52:39 UTC
