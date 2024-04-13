@@ -1,0 +1,15 @@
+starting worker pid=6242 on localhost:11724 at 15:26:18.312
+Warning in fun(libname, pkgname) :
+  The 0.5.x version will undergo significant design changes. Please be prepared to update your code accordingly, or consider continuing with version 0.4.x until you are ready to update.
+starting worker pid=6272 on localhost:11724 at 15:26:33.880
+Warning in fun(libname, pkgname) :
+  The 0.5.x version will undergo significant design changes. Please be prepared to update your code accordingly, or consider continuing with version 0.4.x until you are ready to update.
+2024-04-13 15:27:03 c7c044b2e2e0 6132 CausalGPS smooth_erf DEBUG:  Giving equal weight for all samples.
+2024-04-13 15:27:16 c7c044b2e2e0 6132 CausalGPS gen_wrap_sl_lib DEBUG:  Hyperparameters for m_xgboost: ntrees: 100,  eta: 0.3, max_depth: 4,  min_child_weight: 1.
+2024-04-13 15:27:17 c7c044b2e2e0 6132 CausalGPS estimate_gps DEBUG:  Min Max of treatment: -12.5490913420629, 29.4615124308086
+2024-04-13 15:27:17 c7c044b2e2e0 6132 CausalGPS estimate_gps DEBUG:  Min Max of gps: 4.95234130889587e-05, 0.421318727974416
+2024-04-13 15:27:17 c7c044b2e2e0 6132 CausalGPS estimate_gps DEBUG:  Weights for the select libraries in predicting e_gps: m_xgboost_internal_All 1 | Overal Risk: 35.3427511097454
+2024-04-13 15:27:17 c7c044b2e2e0 6132 CausalGPS estimate_gps DEBUG:  Wall clock time to estimate e_gps: 1.01900000000001 seconds.
+2024-04-13 15:27:17 c7c044b2e2e0 6132 CausalGPS estimate_gps DEBUG:  Wall clock time to run estimate_gps function:  1.072 seconds.
+2024-04-13 15:27:17 c7c044b2e2e0 6132 CausalGPS trim_gps DEBUG:  5% quantile for trim: 0.0400263136641833
+2024-04-13 15:27:17 c7c044b2e2e0 6132 CausalGPS trim_gps DEBUG:  80% for trim: 0.413924872688417

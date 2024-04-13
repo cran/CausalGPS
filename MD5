@@ -1,6 +1,6 @@
-beff4ffde12f87f34865e5d37d8a7539 *DESCRIPTION
+3acc03eed14eabf0a87d44459ca90216 *DESCRIPTION
 1120486da15535fd2ce7ff4f76d367d0 *NAMESPACE
-13bafca0f5328d4d5c92f04e11f9fc17 *NEWS.md
+409172948f73b3a63271716b4cacdac4 *NEWS.md
 001bd1025d682771c34b797e5ea136b2 *R/RcppExports.R
 5abe2c82d54e5ff85d7a561e0adb3e17 *R/absolute_corr_fun.R
 cbfe0e28010355aff8249e5d90508580 *R/absolute_weighted_corr_fun.R
@@ -34,12 +34,12 @@ a03b24648a4ae49c2bea7bc0d2e81c7d *R/plot.R
 0d6d0daf20819fdfc09b1a21258d82e5 *R/train_it.R
 865fbc0aacef73860239f4a697d1a252 *R/trim_gps.R
 97736eeae7554063104f68ca725c175f *R/utils.R
-9946c3511089857122e5395fff6c080f *R/zzz.R
-1b297257b504db58464d505db3f0d77e *README.md
+a0162537f3ac2640a11593e748a4c79b *R/zzz.R
+fbda634b819fcf039231675e9627a9d1 *README.md
 7f2094c7b4d5faa522b624cffc621f8b *build/partial.rdb
 b25e0aab2eea8d97bb9f05a90a1e629d *build/vignette.rds
 3bb56c082aeaa25f396277c27878a69e *data/synthetic_us_2010.RData
-cc21083706eb083ab8e0171777ce3e75 *inst/CITATION
+8d41e8e8f38a7fedf7d51ec1948ba665 *inst/CITATION
 3c9e2d06e8560272e30c98b0c827478b *inst/doc/CausalGPS.R
 2dbfa5bc03edef9e8bc407f37ceb4408 *inst/doc/CausalGPS.Rmd
 b5484dd015fe535966037d30dd6fbaa4 *inst/doc/CausalGPS.html
@@ -129,6 +129,7 @@ d8185da78f062246f07dbd90ca0d4d01 *src/compute_closest_wgps_helper_no_sc.cpp
 6feca97677ed79d03404e36fa48f47a7 *src/compute_closest_wgps_helper_sequential.cpp
 9c3c8835eb601df19c6fd1583f2ba6dc *src/compute_closest_wgps_no_sc_binary_search.cpp
 9e53cf880325657b38bd277ed2d0d4a0 *tests/testthat.R
+25e331d5e8b80e1003a8880adeddf604 *tests/testthat/CausalGPS.log
 bf14ffe0691775fa87a7053268dd5824 *tests/testthat/test-CausalGPS_smooth.R
 82a9831ecf47c2bde35e2886d24d88ed *tests/testthat/test-absolute_corr_fun.R
 c8b8bb03cea7f04944e3c4f60d10e527 *tests/testthat/test-absolute_weighted_corr_fun.R
