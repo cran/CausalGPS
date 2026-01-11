@@ -47,6 +47,7 @@ ul.task-list{list-style: none;}
 div.csl-bib-body { }
 div.csl-entry {
 clear: both;
+margin-bottom: 0em;
 }
 .hanging div.csl-entry {
 margin-left:2em;
@@ -310,7 +311,7 @@ algorithm outputs the final product of our design stage, i.e., a matched
 set with <span class="math inline">\(N\times L\)</span> units.<br />
 <strong>for</strong> <span class="math inline">\(l = 1,2,\ldots,
 L\)</span> <strong>do</strong><br />
-  Choose <strong>one</strong> exposure level of interest <span class="math inline">\(w^{(l)} \in \{w^{(1)}, w^{(2)}, ...,
+  Choose <strong>one</strong> exposure level of interest <span class="math inline">\(w^{(l)} \in  \{w^{(1)}, w^{(2)}, ...,
 w^{(L)}\}\)</span>.<br />
   <strong>for</strong> <span class="math inline">\(j&#39; = 1
 ,\ldots,N\)</span> <strong>do</strong><br />
@@ -341,8 +342,8 @@ as: <span class="math inline">\(\hat{Y}_{j&#39;}(w^{(l)})=Y^{obs}_{j_{{gps}}(e^{
 <p><strong>end for</strong></p></li>
 <li><p>After implementing the matching algorithm, we construct the
 matched set with <span class="math inline">\(N\times L\)</span> units by
-combining all <span class="math inline">\(\hat{Y}_{j&#39;}(w^{(l)})\)</span> for <span class="math inline">\(j&#39;=1,\ldots,N\)</span> and for all <span class="math inline">\(w^{(l)} \in
-\{w^{(1)},w^{(2)},...,w^{(L)}\}\)</span>.</p></li>
+combining all <span class="math inline">\(\hat{Y}_{j&#39;}(w^{(l)})\)</span> for <span class="math inline">\(j&#39;=1,\ldots,N\)</span> and for all <span class="math inline">\(w^{(l)}
+\in  \{w^{(1)},w^{(2)},...,w^{(L)}\}\)</span>.</p></li>
 </ol>
 </div>
 <div id="technical-details-for-covariate-balance" class="section level2">
@@ -356,7 +357,7 @@ above build upon the work by <span class="citation">(Austin 2019)</span>
 who examine covariate balance conditions with continuous exposures. We
 adapt them into the proposed matching framework.</p>
 <p>In a balanced pseudo population dataset, the correlations between the
-exposure and pre-exposure covariates should close to zero, that is <span class="math inline">\(E [\mathbf{c}_{i}^{*} w_{i}^{*} ] \approx
+exposure and pre-exposure covariates should close to zero, that is <span class="math inline">\(E [\mathbf{c}_{i}^{*}  w_{i}^{*} ] \approx
 \mathbf{0}.\)</span> We calculate the absolute correlation in the pseudo
 population dataset as<br />
 <span class="math display">\[\begin{align*}
@@ -375,7 +376,7 @@ balance in the pseudo population dataset.</p>
 </div>
 <div id="references" class="section level2 unnumbered">
 <h2 class="unnumbered">References</h2>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-austin2019assessing" class="csl-entry">
 Austin, Peter C. 2019. <span>“Assessing Covariate Balance When Using the
 Generalized Propensity Score with Quantitative or Continuous

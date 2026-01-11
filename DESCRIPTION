@@ -2,10 +2,10 @@ Package: CausalGPS
 Type: Package
 Title: Matching on Generalized Propensity Scores with Continuous
         Exposures
-Version: 0.5.0
+Version: 0.5.1
 Authors@R: c(
     person("Naeem", "Khoshnevis", email = "nkhoshnevis@g.harvard.edu",
-           role=c("aut","cre"), 
+           role=c("aut", "cre"), 
            comment = c(ORCID = "0000-0003-4315-1426", AFFILIATION="Kempner")),
     person("Xiao", "Wu", email = "xw2892@cumc.columbia.edu",
            role= c("aut"),            
@@ -29,16 +29,18 @@ Imports: parallel, data.table, SuperLearner, xgboost, gam, MASS,
         polycor, wCorr, stats, ggplot2, rlang, logger, Rcpp, gnm,
         locpol, Ecume, KernSmooth, cowplot
 Encoding: UTF-8
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.3
 Suggests: covr, knitr, rmarkdown, ranger, earth, testthat, gridExtra
 VignetteBuilder: knitr
 Depends: R (>= 3.5.0)
 LinkingTo: Rcpp
 NeedsCompilation: yes
-Packaged: 2024-06-19 18:12:02 UTC; rstudio
-Author: Naeem Khoshnevis [aut, cre] (<https://orcid.org/0000-0003-4315-1426>,
-    Kempner),
-  Xiao Wu [aut] (<https://orcid.org/0000-0002-4884-657X>, CUMC),
-  Danielle Braun [aut] (<https://orcid.org/0000-0002-5177-8598>, HSPH)
+Packaged: 2026-01-11 19:32:19 UTC; naeemkhoshnevis
+Author: Naeem Khoshnevis [aut, cre] (ORCID:
+    <https://orcid.org/0000-0003-4315-1426>, AFFILIATION: Kempner),
+  Xiao Wu [aut] (ORCID: <https://orcid.org/0000-0002-4884-657X>,
+    AFFILIATION: CUMC),
+  Danielle Braun [aut] (ORCID: <https://orcid.org/0000-0002-5177-8598>,
+    AFFILIATION: HSPH)
 Repository: CRAN
-Date/Publication: 2024-06-19 18:30:02 UTC
+Date/Publication: 2026-01-11 19:50:02 UTC

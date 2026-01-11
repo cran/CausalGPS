@@ -48,6 +48,7 @@ overflow: visible;
 }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -344,7 +345,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h3>1) How to define a new transformer?</h3>
 <p>Transformers are unary functions that are applied on the covariates.
 Here is an example of “to the power of 5”.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pow5 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {x<span class="sc">^</span><span class="dv">5</span>}</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>pow5 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {x<span class="sc">^</span><span class="dv">5</span>}</span></code></pre></div>
 <p>Which you can pass it into the transformers list as
 <code>&quot;pow5&quot;</code>.</p>
 </div>
@@ -396,8 +397,8 @@ using only one core.</h3>
 <p>In order to activate OpenMP on HPC, you need to load the required
 modules. For example, if you are using SLURM on Cannon at Harvard
 University, you need to load the intel module.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load intel/19.0.5-fasrc01</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">OMP_NUM_THREADS</span><span class="op">=</span><span class="va">$SLURM_CPUS_PER_TASK</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">module</span> load intel/19.0.5-fasrc01</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="bu">export</span> <span class="va">OMP_NUM_THREADS</span><span class="op">=</span><span class="va">$SLURM_CPUS_PER_TASK</span></span></code></pre></div>
 <p>Please read more <a href="https://docs.rc.fas.harvard.edu/kb/running-jobs/#Using_Threads_such_as_OpenMP/">here</a>.</p>
 </div>
 <div id="what-is-the-counter_weight-column-in-the-pseudo-population" class="section level3">
@@ -469,7 +470,7 @@ exposure-response function:
 <p>This issue arises due to a constraint within the <code>locpol</code>
 package. A feasible solution to circumnavigate this problem is to
 install a modified version of locpol.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;NSAPH-Software/locpol&quot;</span>, <span class="at">reference=</span><span class="st">&quot;master&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;NSAPH-Software/locpol&quot;</span>, <span class="at">reference=</span><span class="st">&quot;master&quot;</span>)</span></code></pre></div>
 <p>The deviation from the original package lies in the augmentation of
 the maximum number of evaluation points (.maxEvalPts).</p>
 </div>
